@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const courseSchema = new mongoose.Schema(
     {
@@ -27,9 +27,11 @@ const courseSchema = new mongoose.Schema(
             type: String,
             default: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaLGtEd0MJro4X9wDmT2vrvLT-HjKkyyWVmg&s",
         },
+    
         mentor: { type: mongoose.Types.ObjectId, ref: "Mentor" },
     },
     { timestamps: true }
 );
 
-module.exports = new mongoose.model("courses", courseSchema);
+const Course =  mongoose.model("courses", courseSchema);
+module.exports = { Course };

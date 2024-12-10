@@ -60,10 +60,11 @@ const login = async (req, res) => {
         }
         const token = generateToken(user, "user");
 
-        console.log(token, "=======token");
         res.cookie("token", token);
 
-        res.status(200).json({ message: "login successfull", data: user });
+        const { password: _, ...userWithOutPassword } = user._doc;
+
+        res.status(200).json({ message: "login successfull", data: userWithOutPassword });
     } catch (error) {
         console.log(error);
         res.status(error.status || 500).json({ error: error.message || "Internal server Error" });
