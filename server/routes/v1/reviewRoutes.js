@@ -8,4 +8,4 @@ reviewRouter.post("/add-course-review", userAuth, addReview);
 reviewRouter.get("/get-avg-rating", userAuth, getAverageRating);
 reviewRouter.delete("/delete-review", userAuth, deleteReview);
 
-module.exports = { reviewRouter };
+module.exports = reviewRouter ;
