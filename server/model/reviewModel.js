@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const reviewSchema = new mongoose.Schema({
     userId: {
@@ -28,4 +28,5 @@ const reviewSchema = new mongoose.Schema({
     },
 });
 
-module.exports = new mongoose.model("reviews", reviewSchema)
+const Review = new mongoose.model("reviews", reviewSchema);
+module.exports = { Review };

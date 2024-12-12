@@ -1,18 +1,17 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const cartSchema = new Schema(
+const cartSchema = new mongoose.Schema(
     {
         userId: {
-            type: Schema.Types.ObjectId,
-            ref: "users",
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
             required: true,
         },
-
         courses: [
             {
                 courseId: {
-                    type: Schema.Types.ObjectId,
-                    ref: "courses",
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "Course",
                     required: true,
                 },
                 price: {
@@ -30,4 +29,11 @@ const cartSchema = new Schema(
     { timestamps: true }
 );
 
-module.exports = new mongoose.model('carts', cartSchema)
+
+cartSchema.methods.calculateTotalPrice = function () {
+    this.totalPrice = this.courses.reduce((total, course) => total + course.price, 0);
+};
+
+const Cart = mongoose.model("Cart", cartSchema);
+
+module.exports = { Cart };
