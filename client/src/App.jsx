@@ -1,11 +1,12 @@
-import { About } from "./pages/user/About";
-import { Home } from "./pages/user/Home";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router/router";
+import { Toaster } from "react-hot-toast";
 
 function App() {
     return (
         <>
-            <Home />
-            <About />
+            <RouterProvider router={router} />
+            <Toaster />
         </>
     );
 }

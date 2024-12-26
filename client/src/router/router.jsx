@@ -8,6 +8,7 @@ import { Signup } from "../pages/shared/Signup";
 import { Login } from "../pages/shared/Login";
 import { CourseDetailsPage } from "../pages/user/CourseDetailsPage";
 import { ErrorPage } from "../pages/shared/ErrorPage";
+import { Profile } from "../pages/user/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -40,35 +41,35 @@ export const router = createBrowserRouter([
                 element: <CoursePage />,
             },
             {
-                path: "courseDetails/:id",
+                path: "courseDetails/:courseId",
                 element: <CourseDetailsPage />,
             },
-            // {
-            //     element: <ProtectedRoute />,
-            //     path: "user",
-            //     children: [
-            //         {
-            //             path: "whishlist",
-            //             element: <h1>Wishlist</h1>,
-            //         },
-            //         {
-            //             path: "profile",
-            //             element: <ProfilePage />,
-            //         },
-            //         {
-            //             path: "cart",
-            //             element: <Cart />,
-            //         },
-            //         {
-            //             path: "order",
-            //             element: <h1> orders page</h1>,
-            //         },
-            //         {
-            //             path: "payment/success",
-            //             element: <h2>Payment success</h2>,
-            //         },
-            //     ],
-            // },
+            {
+                // element: <ProtectedRoute />,
+                path: "user",
+                children: [
+                    {
+                        path: "whishlist",
+                        element: <h1>Wishlist</h1>,
+                    },
+                    {
+                        path: "profile",
+                        element: <Profile />,
+                    },
+                    {
+                        path: "cart",
+                        // element: <Cart />,
+                    },
+                    {
+                        path: "order",
+                        element: <h1> orders page</h1>,
+                    },
+                    {
+                        path: "payment/success",
+                        element: <h2>Payment success</h2>,
+                    },
+                ],
+            },
         ],
     },
 ]);
