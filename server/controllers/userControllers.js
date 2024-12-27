@@ -60,7 +60,11 @@ const login = async (req, res) => {
         }
         const token = generateToken(user, "user");
 
-        res.cookie("token", token);
+        res.cookie("token", token, {
+            sameSite: "None",
+            secure: true,
+            httpOnly: true,
+        });
 
         const { password: _, ...userWithOutPassword } = user._doc;
 
@@ -85,7 +89,11 @@ const userProfile = async (req, res) => {
 
 const userLogout = async (req, res) => {
     try {
-        res.clearCookie("token");
+        res.clearCookie("token",{
+            sameSite: "None",
+            secure: true,
+            httpOnly: true,
+        });
 
         res.status(200).json({ message: "user logout success" });
     } catch (error) {
