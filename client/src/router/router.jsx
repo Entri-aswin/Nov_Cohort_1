@@ -9,6 +9,8 @@ import { Login } from "../pages/shared/Login";
 import { CourseDetailsPage } from "../pages/user/CourseDetailsPage";
 import { ErrorPage } from "../pages/shared/ErrorPage";
 import { Profile } from "../pages/user/Profile";
+import { Cart } from "../pages/user/Cart";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
     {
@@ -45,7 +47,7 @@ export const router = createBrowserRouter([
                 element: <CourseDetailsPage />,
             },
             {
-                // element: <ProtectedRoute />,
+                element: <ProtectedRoute />,
                 path: "user",
                 children: [
                     {
@@ -58,7 +60,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: "cart",
-                        // element: <Cart />,
+                        element: <Cart />,
                     },
                     {
                         path: "order",

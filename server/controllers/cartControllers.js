@@ -12,7 +12,7 @@ const getCart = async (req, res) => {
 
         res.status(200).json({ message: "cart fetched successfully", data: cart });
     } catch (error) {
-        res.status(500).json({ message: "Internal server error", error });
+        return res.status(error.statusCode || 500).json(error.message || "Internal Server error");
     }
 };
 
@@ -71,8 +71,12 @@ const removeCourseFromCart = async (req, res) => {
             return res.status(404).json({ message: "Cart not found" });
         }
 
+        console.log("courseId=====",courseId);
+
         // Remove the course from the cart
         cart.courses = cart.courses.filter((item) => !item.courseId.equals(courseId));
+
+        console.log("cart======", cart);
 
         // Recalculate the total price
         cart.calculateTotalPrice();

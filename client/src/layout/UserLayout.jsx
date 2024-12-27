@@ -4,12 +4,13 @@ import { Footer } from "../componets/user/Footer";
 import { Outlet, useLocation } from "react-router-dom";
 import { UserHeader } from "../componets/user/UserHeader";
 import { axiosInstance } from "../config/axiosInstance";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearUser, saveUser } from "../redux/features/userSlice";
 
 export const UserLayout = () => {
-    // const [isUserAuth, setIsUserAuth] = useState(false);
     const location = useLocation();
     const {isUserAuth} = useSelector((state) => state.user)
+    const dispatch =useDispatch()
 
     const checkUser = async () => {
         try {
@@ -17,11 +18,11 @@ export const UserLayout = () => {
                 method: "GET",
                 url: "/user/check-user",
             });
-            // setIsUserAuth(true);
             console.log(response, "=====checkUser");
+            dispatch(saveUser())
         } catch (error) {
             console.log(error);
-            // setIsUserAuth(false);
+            dispatch(clearUser())
         }
     };
 
