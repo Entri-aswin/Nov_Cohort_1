@@ -2,7 +2,7 @@ import React from "react";
 import { CircleUser } from "lucide-react";
 import { ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
-import { DarkMode } from "../shared/Darkmode";
+import { DarkMode } from "../shared/DarkMode";
 
 export const UserHeader = () => {
     return (
