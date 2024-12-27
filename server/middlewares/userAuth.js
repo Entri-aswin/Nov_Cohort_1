@@ -10,14 +10,12 @@ const userAuth = (req, res, next) => {
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        // console.log(decoded, "====decoded token");
 
         if (!decoded) {
             return res.status(401).json({ message: "user not autherized" });
         }
 
         req.user = decoded;
-        console.log("user request=====", req.user);
 
         next();
     } catch (error) {
