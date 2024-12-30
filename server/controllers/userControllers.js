@@ -1,6 +1,7 @@
 const userDb = require("../model/userModel");
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../utils/token");
+const NODE_ENV = process.env.NODE_ENV;
 
 const register = async (req, res) => {
     try {
@@ -61,9 +62,9 @@ const login = async (req, res) => {
         const token = generateToken(user, "user");
 
         res.cookie("token", token, {
-            sameSite: "None",
-            secure: true,
-            httpOnly: true,
+            sameSite: NODE_ENV === "production" ? "None" : "Lax",
+            secure: NODE_ENV === "production",
+            httpOnly: NODE_ENV === "production",
         });
 
         const { password: _, ...userWithOutPassword } = user._doc;
@@ -89,7 +90,7 @@ const userProfile = async (req, res) => {
 
 const userLogout = async (req, res) => {
     try {
-        res.clearCookie("token",{
+        res.clearCookie("token", {
             sameSite: "None",
             secure: true,
             httpOnly: true,
